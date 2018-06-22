@@ -1,6 +1,6 @@
-package qjm.rpc.test.imp;
+package com.rpc.test.imp;
 
-import qjm.rpc.anno.RpcService;
+import com.rpc.anno.RpcService;
 
 @RpcService(PersonService.class)
 public class PersonServiceImpl implements PersonService {

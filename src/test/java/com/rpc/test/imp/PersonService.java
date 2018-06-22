@@ -1,4 +1,4 @@
-package qjm.rpc.test.imp;
+package com.rpc.test.imp;
 
 public interface PersonService {
 

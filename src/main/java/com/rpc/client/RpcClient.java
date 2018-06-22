@@ -1,7 +1,7 @@
-package qjm.rpc.client;
+package com.rpc.client;
 
-import qjm.rpc.common.RpcRequest;
-import qjm.rpc.common.RpcResponse;
+import com.rpc.common.RpcRequest;
+import com.rpc.common.RpcResponse;
 
 import java.io.*;
 import java.net.Socket;

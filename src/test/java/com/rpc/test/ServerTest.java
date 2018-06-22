@@ -1,6 +1,6 @@
-package qjm.rpc.test;
+package com.rpc.test;
 
-import qjm.rpc.server.RpcServer;
+import com.rpc.server.RpcServer;
 
 public class ServerTest {
 

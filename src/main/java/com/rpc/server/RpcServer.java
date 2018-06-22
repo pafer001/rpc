@@ -1,4 +1,4 @@
-package qjm.rpc.server;
+package com.rpc.server;
 
 import java.io.File;
 import java.io.IOException;
@@ -76,7 +76,7 @@ public class RpcServer {
             //循环实例化
             for (Class<?> cla : classes) {
                 Object obj = cla.newInstance();
-                services.put(cla.getAnnotation(qjm.rpc.anno.RpcService.class).value().getName(), obj);
+                services.put(cla.getAnnotation(com.rpc.anno.RpcService.class).value().getName(), obj);
             }
             return services;
         } catch (Exception e) {
@@ -115,7 +115,7 @@ public class RpcServer {
                 //判断是否是Class文件
                 if (file.isFile() && file.getName().endsWith(".class")) {
                     Class<?> clazz = Class.forName(pckgname + '.' + files[i].substring(0, files[i].length() - 6));
-                    if (clazz.getAnnotation(qjm.rpc.anno.RpcService.class) != null) {
+                    if (clazz.getAnnotation(com.rpc.anno.RpcService.class) != null) {
                         classes.add(clazz);
                     }
                 } else if (file.isDirectory()) { //如果是目录，递归查找

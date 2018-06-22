@@ -1,6 +1,6 @@
-package qjm.rpc.client;
+package com.rpc.client;
 
-import qjm.rpc.common.RpcRequest;
+import com.rpc.common.RpcRequest;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

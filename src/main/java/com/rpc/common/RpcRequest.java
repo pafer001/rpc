@@ -1,4 +1,4 @@
-package qjm.rpc.common;
+package com.rpc.common;
 
 import java.io.Serializable;
 

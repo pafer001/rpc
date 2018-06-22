@@ -1,8 +1,8 @@
-package qjm.rpc.test;
+package com.rpc.test;
 
-import qjm.rpc.client.RpcClientProxy;
-import qjm.rpc.test.imp.Person;
-import qjm.rpc.test.imp.PersonService;
+import com.rpc.client.RpcClientProxy;
+import com.rpc.test.imp.Person;
+import com.rpc.test.imp.PersonService;
 
 public class ClientTest {
 
