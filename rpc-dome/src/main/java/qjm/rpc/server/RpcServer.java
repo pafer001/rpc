@@ -47,12 +47,13 @@ public class RpcServer {
             e.printStackTrace();
         } finally {
             //关闭监听
-            if (server != null)
+            if (server != null) {
                 try {
                     server.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
         }
     }
 
