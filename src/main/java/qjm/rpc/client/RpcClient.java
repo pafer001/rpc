@@ -9,7 +9,7 @@ import java.net.Socket;
 /**
  * 链接服务器调用服务
  *
- * @author QJM
+ * @author wangzhenya
  */
 public class RpcClient {
 

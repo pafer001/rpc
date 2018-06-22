@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * 人
  *
- * @author QJM
+ * @author wangzhenya
  */
 public class Person implements Serializable {
 

@@ -14,7 +14,7 @@ import java.lang.reflect.Proxy;
  * 1）封装参数，用于发送到服务器，定位服务、执行服务
  * 2）链接服务器调用服务
  *
- * @author QJM
+ * @author wangzhenya
  */
 public class RpcClientProxy implements InvocationHandler {
     private String host;

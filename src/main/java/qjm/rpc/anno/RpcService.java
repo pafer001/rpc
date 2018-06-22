@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 /**
  * rpc服务类注解
  *
- * @author QJM
+ * @author wangzhenya
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

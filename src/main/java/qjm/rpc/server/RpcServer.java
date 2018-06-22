@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 服务器端
  *
- * @author QJM
+ * @author wangzhenya
  */
 public class RpcServer {
 

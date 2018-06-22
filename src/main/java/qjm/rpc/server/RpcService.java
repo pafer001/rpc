@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * rpc服务
  *
- * @author QJM
+ * @author wangzhenya
  */
 public class RpcService implements Runnable {
 

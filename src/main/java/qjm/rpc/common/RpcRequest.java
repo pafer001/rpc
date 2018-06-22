@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * rpc请求参数实体
  *
- * @author QJM
+ * @author wangzhenya
  */
 public class RpcRequest implements Serializable {
     private static final long serialVersionUID = 1L;
