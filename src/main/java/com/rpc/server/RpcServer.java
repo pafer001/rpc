@@ -22,6 +22,53 @@ import java.util.concurrent.TimeUnit;
 public class RpcServer {
 
     /**
+     * 获取包下所有有@RpcSercive注解的类
+     *
+     * @param pckgname
+     * @return
+     * @throws ClassNotFoundException
+     */
+    public static List<Class<?>> getClasses(String pckgname) throws ClassNotFoundException {
+        List<Class<?>> classes = new ArrayList<Class<?>>();
+        File directory = null;
+        try {
+            ClassLoader cld = Thread.currentThread().getContextClassLoader();
+            if (cld == null)
+                throw new ClassNotFoundException("Can't get class loader.");
+            String path = pckgname.replace('.', '/');
+            URL resource = cld.getResource(path);
+            if (resource == null)
+                throw new ClassNotFoundException("No resource for " + path);
+            directory = new File(resource.getFile());
+        } catch (NullPointerException x) {
+            throw new ClassNotFoundException(pckgname + " (" + directory + ") does not appear to be a valid package a");
+        }
+        if (directory.exists()) {
+            //获取所有文件
+            String[] files = directory.list();
+            File[] fileList = directory.listFiles();
+            for (int i = 0; fileList != null && i < fileList.length; i++) {
+                File file = fileList[i];
+                //判断是否是Class文件
+                if (file.isFile() && file.getName().endsWith(".class")) {
+                    Class<?> clazz = Class.forName(pckgname + '.' + files[i].substring(0, files[i].length() - 6));
+                    if (clazz.getAnnotation(com.rpc.anno.RpcService.class) != null) {
+                        classes.add(clazz);
+                    }
+                } else if (file.isDirectory()) { //如果是目录，递归查找
+                    List<Class<?>> result = getClasses(pckgname + "." + file.getName());
+                    if (result != null && result.size() != 0) {
+                        classes.addAll(result);
+                    }
+                }
+            }
+        } else {
+            throw new ClassNotFoundException(pckgname + " does not appear to be a valid package b");
+        }
+        return classes;
+    }
+
+    /**
      * 启动rpc服务
      *
      * @param port  监听端口
@@ -82,52 +129,5 @@ public class RpcServer {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }
-
-    /**
-     * 获取包下所有有@RpcSercive注解的类
-     *
-     * @param pckgname
-     * @return
-     * @throws ClassNotFoundException
-     */
-    public static List<Class<?>> getClasses(String pckgname) throws ClassNotFoundException {
-        List<Class<?>> classes = new ArrayList<Class<?>>();
-        File directory = null;
-        try {
-            ClassLoader cld = Thread.currentThread().getContextClassLoader();
-            if (cld == null)
-                throw new ClassNotFoundException("Can't get class loader.");
-            String path = pckgname.replace('.', '/');
-            URL resource = cld.getResource(path);
-            if (resource == null)
-                throw new ClassNotFoundException("No resource for " + path);
-            directory = new File(resource.getFile());
-        } catch (NullPointerException x) {
-            throw new ClassNotFoundException(pckgname + " (" + directory + ") does not appear to be a valid package a");
-        }
-        if (directory.exists()) {
-            //获取所有文件
-            String[] files = directory.list();
-            File[] fileList = directory.listFiles();
-            for (int i = 0; fileList != null && i < fileList.length; i++) {
-                File file = fileList[i];
-                //判断是否是Class文件
-                if (file.isFile() && file.getName().endsWith(".class")) {
-                    Class<?> clazz = Class.forName(pckgname + '.' + files[i].substring(0, files[i].length() - 6));
-                    if (clazz.getAnnotation(com.rpc.anno.RpcService.class) != null) {
-                        classes.add(clazz);
-                    }
-                } else if (file.isDirectory()) { //如果是目录，递归查找
-                    List<Class<?>> result = getClasses(pckgname + "." + file.getName());
-                    if (result != null && result.size() != 0) {
-                        classes.addAll(result);
-                    }
-                }
-            }
-        } else {
-            throw new ClassNotFoundException(pckgname + " does not appear to be a valid package b");
-        }
-        return classes;
     }
 }
